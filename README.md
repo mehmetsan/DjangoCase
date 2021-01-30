@@ -17,3 +17,7 @@ http://localhost:8000/static/xmls/correct.xml
 ### The app checks every entry for any change and updates the database if needed.
 ### Your change results are emailed to your address
 ### If the XML's syntax is not valid, the cause of the error is emailed to your address
+
+### For django admin page you can use credentials:
+### username: mehmet
+### password: mehmet123
