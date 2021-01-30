@@ -1,61 +1,44 @@
 from django.shortcuts import render
-
 from urllib.request import urlopen
-from bs4 import BeautifulSoup, element
-import selenium
-
+from bs4 import BeautifulSoup
 from xml.sax.handler import ContentHandler
 from xml.sax import make_parser
+from entries.models import Entry
 
-from lxml import etree
-
-import xml.etree.ElementTree as ET
-
-def check_syntax(elements):
+def check_syntax(link):
     try:
         parser = make_parser( )
         parser.setContentHandler(ContentHandler(  ))
-        parser.parse(elements)
+        parser.parse(link)
         print ("{} is well-formed".format("Your doc is ") )
+        return False
     except Exception as e:
         print ("{} is NOT well-formed! {}".format("Your doc is ", e))
+        return e
 
 def home(request):
+    content = ""
 
     if request.method == "POST":
         link = request.POST['link-url']
-        print(link)
+        errors = check_syntax(link)
 
-        req = urlopen(link)
+        if errors:
+            ## SEND EMAIL
+            pass
+        else:
+            # SAVE THE FILE
+            req = urlopen(link)
+            soup = BeautifulSoup(req, 'lxml')
 
-        soup = BeautifulSoup(req, 'lxml')
+            content = soup.prettify()
+       
+            f = open("sample.xml", "w")
+            f.write(content)
+            f.close()
 
-        '''       
-        f = open("sample.xml", "w")
-        f.write(soup.prettify())
-        f.close()
-        '''
-
-        file = open('sample.xml',mode='r')
-        xslt_content  = file.read()
-
-
-        #tree = ET.parse('sample.xml')
-
-        #print(type(tree))
-
-        link = "https://www.w3schools.com/xml/plant_catalog.xml"
-        check_syntax(link)
-
-
-        elements = soup.find_all()
-
-        content = soup.prettify()
-
-    #        content.decode('utf-8').encode('ascii')
-     #   doc = etree.fromstring(content)
-
-
+            Entry.objects.create(user=request.user, entry_xml=content, entry_link=link)
+        
 
         return render( request, 'home.html', {'data':content})
     return render( request, 'home.html', {})
