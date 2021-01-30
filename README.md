@@ -19,5 +19,5 @@ http://localhost:8000/static/xmls/correct.xml
 ### If the XML's syntax is not valid, the cause of the error is emailed to your address
 
 ### For django admin page you can use credentials:
-### username: mehmet
-### password: mehmet123
+### --- username: mehmet
+### --- password: mehmet123
