@@ -1,0 +1,9 @@
+<h1>
+    Welcome {{user.username}}
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" id="link-url" name="link-url">
+        <input type="submit" value="Submit">
+    </form>
+</h1>
