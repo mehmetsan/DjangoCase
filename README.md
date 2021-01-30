@@ -6,7 +6,7 @@
 ### --- Enter an XML link, an email to send the results to, a word to change and a word to change to.
 
 ### --- Sample XMLs are served on 
-http://localhost:8000/static/xmls/faulty.xml \n
+http://localhost:8000/static/xmls/faulty.xml  
 http://localhost:8000/static/xmls/correct.xml
 
 ### The app handles your request at the background.
