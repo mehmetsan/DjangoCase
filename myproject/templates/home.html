@@ -1,9 +1,13 @@
 <h1>
-    Welcome {{user.username}}
+    Welcome {{user.email}}
 
     <form method="POST">
         {% csrf_token %}
-        <input type="text" id="link-url" name="link-url">
+        <br><br>
+        <label for="email">Enter your XML Link:</label><br>
+        <input type="text" id="link-url" name="link-url"><br>
+        <label for="email">Enter email to send results to:</label><br>
+        <input type="email" name="email" id="email"><br>
         <input type="submit" value="Submit">
     </form>
 
