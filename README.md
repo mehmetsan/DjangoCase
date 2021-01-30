@@ -1,5 +1,9 @@
 # DjangoCase
 
+# Setup
+### Install the required packages
+### --- pip3 install -r requirements.txt
+
 # Use
 ### --- Run the app on localhost.
 ### --- Login using Google credentials.
