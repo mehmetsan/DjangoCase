@@ -1,23 +1,32 @@
-<h1>
-    Welcome {{user.email}}
+{% if user.is_authenticated %}
 
-    <form method="POST">
-        {% csrf_token %}
-        <br><br>
-        <label for="email">Enter your XML Link:</label><br>
-        <input type="text" id="link-url" name="link-url"><br>
+    <h1>
+        Welcome 
+        <h1>You are logged in as {{user.username}}</h1>
+        <span><a href="/accounts/logout">Logout</a></span>
 
-        <label for="email">Enter email to send results to:</label><br>
-        <input type="email" name="email" id="email"><br>
+        <form method="POST">
+            {% csrf_token %}
+            <br><br>
+            <label for="email">Enter your XML Link:</label><br>
+            <input type="text" id="link-url" name="link-url"><br>
 
-        <label for="email">Enter a word to change in the file:</label><br>
-        <input type="text" name="change-word" id="change-word"><br>
+            <label for="email">Enter email to send results to:</label><br>
+            <input type="email" name="email" id="email"><br>
 
-        <label for="email">Enter a word to change it to:</label><br>
-        <input type="text" name="change-to" id="change-to"><br>
-        
-        <input type="submit" value="Submit">
-    </form>
+            <label for="email">Enter a word to change in the file:</label><br>
+            <input type="text" name="change-word" id="change-word"><br>
 
-    {{data}}
-</h1>
+            <label for="email">Enter a word to change it to:</label><br>
+            <input type="text" name="change-to" id="change-to"><br><br>
+            
+            <input type="submit" value="Submit">
+        </form>
+
+        {{data}}
+    </h1>
+{% else %}
+    <h1>You need to login first</h1><br>
+    <span><a href="/accounts/login">Login</a></span>
+
+{% endif %}

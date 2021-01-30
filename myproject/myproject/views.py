@@ -55,12 +55,18 @@ def processUrl(request):
     change_word = request.POST['change-word'].strip()
     change_to = request.POST['change-to'].strip()
     errors = check_syntax(link)
+    
 
     if errors:
+        error_cause = str(errors).split(' ')[1:]
+        error_cause = ' '.join(error_cause)
+        error_row = str(errors).split(':')[-2]
+
+        error_message = "There is a {} on row {}".format(error_cause,error_row )  
         ## SEND FAILURE EMAIL
         send_mail(
             "Your XML Input Failed",
-            str(errors),
+            error_message,
             "mehmettest@gmail.com",
             [user_email],
         )
