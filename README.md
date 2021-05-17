@@ -1,4 +1,4 @@
-# DjangoCase
+# XML Parser for Django Case
 
 # Setup
 ### Install the required packages
